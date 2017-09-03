@@ -1,0 +1,20 @@
+package com.zhy.system_oa.service;
+
+import java.util.List;
+
+import com.zhy.system_oa.base.DaoSupport;
+import com.zhy.system_oa.domain.Role;
+
+public interface RoleService extends DaoSupport<Role> {
+
+	List<Role> findAll();
+
+	void delete(Long id);
+
+	void save(Role role);
+
+	Role getById(Long id);
+
+	void update(Role role);
+
+}

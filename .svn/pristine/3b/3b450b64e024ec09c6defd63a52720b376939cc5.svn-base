@@ -1,0 +1,92 @@
+package com.test.base;
+
+
+import java.lang.reflect.ParameterizedType;
+import java.util.Collections;
+import java.util.List;
+
+import javax.annotation.Resource;
+
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.springframework.transaction.annotation.Transactional;
+
+
+
+@SuppressWarnings("unchecked")
+@Transactional
+public class BaseDaoImpl<T> implements BaseDao<T> {
+
+	@Resource
+	private SessionFactory sessionFactory;
+
+	private Class<T> clazz = null;// 这是一个问题！
+
+	public BaseDaoImpl(){
+		//使用反射技术得到T真实类型
+		ParameterizedType pt = (ParameterizedType)this.getClass().getGenericSuperclass();//获取当前new的对象的泛型父类类型
+		this.clazz = (Class<T>)pt.getActualTypeArguments()[0];//获取第一个类型参数的真实类型
+		System.out.println(clazz+".真实类型............");
+	}
+
+	/**
+	 * 获取当前可用的session对象
+	 * 
+	 * @return
+	 */
+	protected Session getSession() {
+		return sessionFactory.getCurrentSession();
+	}
+
+	public void save(T entity) {
+		getSession().save(entity);
+	}
+
+	@Override
+	public void delete(Long id) {
+		Object object = getById(id);
+		if (object != null) {
+			getSession().delete(object);
+		}
+	}
+
+	public void update(T entity) {
+		getSession().update(entity);
+	}
+
+	@Override
+	public T getById(Long id) {
+		if(id==null){
+			return null;
+		}else{
+			return getSession().get(clazz, id);
+		}
+	}
+
+	@Override
+	public List<T> getByIds(Long[] ids) {
+		if (ids == null || ids.length == 0) {
+			return Collections.EMPTY_LIST;
+		} else {
+			return getSession().createQuery(//
+					"FROM " + clazz.getSimpleName() + " WHERE id IN (:ids)")//
+					.setParameterList("ids", ids)//
+					.list();
+		}
+	}
+
+	@Override
+	public List<T> findAll() {
+		return getSession()
+				.createQuery(//
+						"FROM " + clazz.getSimpleName())//
+				.list();
+	}
+
+
+
+
+
+
+}

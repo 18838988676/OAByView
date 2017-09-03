@@ -1,0 +1,33 @@
+package com.zhy.system_oa.service.impl;
+
+import java.util.Collection;
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.zhy.system_oa.base.DaoSupporImpl;
+import com.zhy.system_oa.domain.Privilege;
+import com.zhy.system_oa.service.PrivilegeService;
+
+@SuppressWarnings("unchecked")
+@Service
+@Transactional
+public class PrivilegeServiceImpl extends DaoSupporImpl<Privilege> implements PrivilegeService{
+
+	
+	@Override
+	public List<Privilege> findTopList() {
+		return getSession().createQuery(//
+				"FROM Privilege p WHERE p.parent IS NULL")//
+				.list();
+	}
+
+	@Override
+	public Collection<String> getAllPrivilegeUrls() {
+		return getSession().createQuery(//
+				"SELECT DISTINCT p.url FROM Privilege p WHERE p.url IS NOT NULL")//
+				.list();
+	}
+
+}

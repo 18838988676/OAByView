@@ -1,0 +1,16 @@
+package com.zhy.system_oa.dao.impl;
+
+import java.util.List;
+
+import org.springframework.stereotype.Repository;
+
+import com.zhy.system_oa.base.BaseDaoImpl;
+import com.zhy.system_oa.dao.DepartmentDao;
+import com.zhy.system_oa.domain.Department;
+
+@Deprecated
+public class DepartmentDaoImpl extends BaseDaoImpl<Department> implements DepartmentDao {
+
+	
+
+}

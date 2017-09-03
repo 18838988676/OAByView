@@ -1,0 +1,16 @@
+package com.zhy.system_oa.service;
+
+import com.zhy.system_oa.base.DaoSupport;
+import com.zhy.system_oa.domain.User;
+
+public interface UserService extends DaoSupport<User>{
+
+	/**
+	 * 根据登录名与密码查询用户
+	 * @param loginName
+	 * @param password
+	 * @return
+	 */
+	User findByLoginNameAndPassword(String loginName, String password);
+
+}

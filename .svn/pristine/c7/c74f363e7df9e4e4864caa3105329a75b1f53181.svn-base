@@ -1,0 +1,16 @@
+package com.zhy.system_oa.dao.impl;
+
+import java.util.List;
+
+import org.springframework.stereotype.Repository;
+
+import com.zhy.system_oa.base.BaseDaoImpl;
+import com.zhy.system_oa.dao.RoleDao;
+import com.zhy.system_oa.domain.Role;
+
+@Deprecated
+public class RoleDaoImpl extends BaseDaoImpl<Role> implements RoleDao{
+
+	
+
+}

@@ -1,0 +1,21 @@
+package com.zhy.system_oa.base;
+
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
+import com.zhy.system_oa.dao.RoleDao;
+import com.zhy.system_oa.dao.UserDao;
+import com.zhy.system_oa.dao.impl.RoleDaoImpl;
+import com.zhy.system_oa.dao.impl.UserDaoImpl;
+
+public class BaseDaoTest {
+
+	@Test
+	public void testSave() {
+		UserDao userDao = new UserDaoImpl();
+		RoleDao roleDao = new RoleDaoImpl();
+		
+	}
+
+}

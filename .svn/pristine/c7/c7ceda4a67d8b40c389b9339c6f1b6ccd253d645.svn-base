@@ -1,0 +1,8 @@
+package com.zhy.system_oa.dao;
+
+import com.zhy.system_oa.base.BaseDao;
+import com.zhy.system_oa.domain.Role;
+@Deprecated
+public interface RoleDao extends BaseDao<Role>{
+
+}

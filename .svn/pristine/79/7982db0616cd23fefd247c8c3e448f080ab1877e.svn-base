@@ -1,0 +1,13 @@
+package com.zhy.system_oa.dao.impl;
+
+import java.util.List;
+
+import com.zhy.system_oa.base.BaseDaoImpl;
+import com.zhy.system_oa.dao.UserDao;
+import com.zhy.system_oa.domain.User;
+@Deprecated
+public class UserDaoImpl extends BaseDaoImpl<User> implements UserDao{
+
+	
+
+}
